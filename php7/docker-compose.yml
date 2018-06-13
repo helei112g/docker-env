@@ -2,7 +2,7 @@ version: "3"
 
 services:
   php7:
-    image: php:7
+    image: php:7.2.6
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/conf:/etc/mysql/conf.d
