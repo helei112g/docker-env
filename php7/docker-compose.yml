@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7.22
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
+    ports:
+      - "3307:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123123
+  nginx:
+    image: lei_nginx:1.14.0
+    build: ./nginx
+    volumes:
+      - ./nginx/conf:/home/work/app/nginx/conf
+      - ./www:/home/work/www
+    ports:
+      - "80:8080"
+      - "443:443"
+    restart: always
+  redis:
+    image: lei_redis:3.2.11
+    build: ./redis
+    volumes:
+      - ./redis/conf:/home/work/test
+      - ./redis/data:/home/work/data
+    ports:
+      - "6379:6379"
+    restart: always

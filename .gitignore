@@ -1,0 +1,5 @@
+www/
+mysql/data/
+redis/data/
+.DS_Store
+.idea
