@@ -5,8 +5,8 @@ LABEL maintainer="HeLei <dayugog@gmail.com>"
 
 ENV REDIS_VERSION=3.2.11 \
     SRC_DIR=/home/work/src \
-    DATA_DIR=/home/work/data \
-    APP_DIR=/home/work/app/redis
+    DATA_DIR=/home/work/app/redis/data \
+    CONF_DIR=/home/work/app/redis/conf
 
 COPY src/ $SRC_DIR
 
@@ -17,15 +17,15 @@ RUN groupadd -r work && useradd -r -g work work \
     && tar xvzf redis-$REDIS_VERSION.tar.gz \
     && cd redis-$REDIS_VERSION \
     && make && make install \
-    && yum -y remove gcc gcc-c++ make perl \
     && mkdir -p $DATA_DIR \
-    && chown work:work $DATA_DIR \
-    && mkdir -p $APP_DIR/conf \
-    && cp redis.conf $APP_DIR/conf \
+    && mkdir -p $CONF_DIR \
+    && cp redis.conf $CONF_DIR \
+    && chown -R work:work /home \
+    && yum -y remove gcc gcc-c++ make perl \
     && rm -rf $SRC_DIR
 
 # 导出端口
 EXPOSE 6379
 
 # 启动nginx
-CMD ["redis-server", "/home/work/app/redis/etc/redis.conf"]
+CMD ["redis-server", "/home/work/app/redis/conf/redis.conf"]

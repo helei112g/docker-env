@@ -47,7 +47,7 @@ RUN groupadd -r work && useradd -r -g work work \
     && yum -y remove gcc gcc-c++ make perl \
     && yum clean all \
     && mkdir -p $WWW_DIR \
-    && chown -R work:work $WWW_DIR
+    && chown -R work:work /home
 
 # 设置环境变量
 ENV PATH /home/work/app/nginx/sbin:$PATH

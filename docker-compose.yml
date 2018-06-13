@@ -26,7 +26,7 @@ services:
     build: ./redis
     volumes:
       - ./redis/conf:/home/work/app/redis/conf
-      - ./redis/data:/home/work/data
+      - ./redis/data:/home/work/app/redis/data
     ports:
       - "6379:6379"
     restart: always
