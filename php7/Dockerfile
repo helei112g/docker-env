@@ -17,9 +17,8 @@ COPY src/ $SRC_DIR
 RUN groupadd -r work && useradd -r -g work work \
     && yum -y install wget gcc gcc++ gcc-c++ make \
       openssl openssl-devel curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
-      libXpm-deve gmp-devel php-mcrypt  libmcrypt  libmcrypt-devel \
-      libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
-      libpng libpng-devel freetype freetype-devel \
+      gmp-devel libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
+      libpng libpng-devel freetype freetype-devel libedit-devel \
     && cd $SRC_DIR \
     && tar zxvf php-$PHP_VERSION.tar.gz \
     && cd php-$PHP_VERSION \
@@ -48,6 +47,7 @@ RUN groupadd -r work && useradd -r -g work work \
       --enable-zip \
       --enable-inline-optimization \
       --enable-gd-jis-conv \
+      --enable-mysqlnd \
       --with-config-file-path=$APP_DIR/etc \
       --with-mysql-sock=/var/run/mysql/mysql.sock \
       --with-mcrypt \
@@ -65,16 +65,18 @@ RUN groupadd -r work && useradd -r -g work work \
       --with-jpeg-dir \
       --with-freetype-dir \
       --without-gdbm \
+      --with-libedit \
       " \
     && ./configure $BUILD_CONFIG \
     && make && make install \
-    && yum -y remove curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
-      libXpm-deve gmp-devel php-mcrypt  libmcrypt  libmcrypt-devel \
-      libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
-      libpng libpng-devel freetype freetype-devel \
-    && yum clean all \
+    #&& cp php.ini-development $APP_DIR/etc/php.ini \
+    #&& cp $APP_DIR/etc/php-fpm.conf.default $APP_DIR/etc/php-fpm.conf \
     && rm -rf $SRC_DIR \
-    && chown -R work:work /home
+    && chown -R work:work /home \
+    #&& yum -y remove curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
+    #  gmp-devel libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
+    #  libpng libpng-devel freetype freetype-devel libedit-devel \
+    && yum clean all
 
 # 设置环境变量
 ENV PATH $APP_DIR/sbin:$APP_DIR/bin:$PATH

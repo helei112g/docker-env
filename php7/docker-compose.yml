@@ -1,10 +1,18 @@
 version: "3"
 
 services:
-  php7:
-    image: php:7.2.6
+  php-fpm:
+    image: lei_php:7.2.6
+    build: ./
     volumes:
-      - ./mysql/data:/var/lib/mysql
-      - ./mysql/conf:/etc/mysql/conf.d
+      - ./etc:/home/work/app/php/etc
+      - ../www:/home/work/www
     ports:
       - "9000:9000"
+    restart: always
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: dockerenv_default

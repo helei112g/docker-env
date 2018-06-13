@@ -11,6 +11,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123123
+    networks:
+      - default
   nginx:
     image: lei_nginx:1.14.0
     build: ./nginx
@@ -21,6 +23,8 @@ services:
       - "80:8080"
       - "443:443"
     restart: always
+    networks:
+      - default
   redis:
     image: lei_redis:3.2.11
     build: ./redis
@@ -30,3 +34,9 @@ services:
     ports:
       - "6379:6379"
     restart: always
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: dockerenv_default
