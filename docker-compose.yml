@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  mysql:
+  dev.mysql.srv:
     image: mysql:5.7.22
     volumes:
       - ./mysql/data:/var/lib/mysql
@@ -13,7 +13,7 @@ services:
       MYSQL_ROOT_PASSWORD: 123123
     networks:
       - default
-  nginx:
+  dev.nginx.srv:
     image: lei_nginx:1.14.0
     build: ./nginx
     volumes:
@@ -25,7 +25,9 @@ services:
     restart: always
     networks:
       - default
-  redis:
+    depends_on:
+      - dev.php-fpm.srv
+  dev.redis.srv:
     image: lei_redis:3.2.11
     build: ./redis
     volumes:
@@ -33,6 +35,17 @@ services:
       - ./redis/data:/home/work/app/redis/data
     ports:
       - "6379:6379"
+    restart: always
+    networks:
+      - default
+  dev.php-fpm.srv:
+    image: lei_php:7.2.6
+    build: ./php7
+    volumes:
+      - ./php7/etc:/home/work/app/php/etc
+      - ./www:/home/work/www
+    ports:
+      - "9000:9000"
     restart: always
     networks:
       - default
