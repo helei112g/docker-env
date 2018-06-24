@@ -19,6 +19,7 @@ services:
     volumes:
       - ./nginx/conf:/home/work/app/nginx/conf
       - ./www:/home/work/www
+      - ./logs/nginx:/home/work/logs/nginx
     ports:
       - "80:8080"
       - "443:443"

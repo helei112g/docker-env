@@ -1,5 +1,6 @@
 www/
 mysql/data/
 redis/data/
+logs/
 .DS_Store
 .idea

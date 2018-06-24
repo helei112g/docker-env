@@ -8,7 +8,8 @@ ENV NGINX_VERSION=1.14.0 \
     PCRE_VERSION=8.42 \
     OPENSSL_VERSION=1.0.2o \
     SRC_DIR=/home/work/src \
-    WWW_DIR=/home/work/www
+    WWW_DIR=/home/work/www \
+    LOG_DIR=/home/work/logs/nginx
 
 # 拷贝文件
 COPY src/ $SRC_DIR
@@ -47,6 +48,7 @@ RUN groupadd -r work && useradd -r -g work work \
     && yum -y remove gcc gcc-c++ make perl \
     && yum clean all \
     && mkdir -p $WWW_DIR \
+    && mkdir -p $LOG_DIR \
     && chown -R work:work /home
 
 # 设置环境变量
