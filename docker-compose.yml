@@ -19,7 +19,6 @@ services:
     volumes:
       - ./nginx/conf:/home/work/app/nginx/conf
       - ./logs/nginx:/home/work/logs/nginx
-      - ./nginx/run.sh:/home/work/run.sh
       - ./www:/home/work/www
     ports:
       - "80:8080"
@@ -29,7 +28,6 @@ services:
       - default
     depends_on:
       - dev.php-fpm.srv
-    command: ["/home/work/run.sh"]
   dev.redis.srv:
     image: lei_redis:3.2.11
     build: ./redis

@@ -54,8 +54,14 @@ RUN groupadd -r work && useradd -r -g work work \
 # 设置环境变量
 ENV PATH /home/work/app/nginx/sbin:$PATH
 
+# 拷贝配置文件
+COPY conf/ /home/work/app/nginx/conf
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
 # 导出端口
 EXPOSE 8080 443
 
 # 启动nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx-server"]
