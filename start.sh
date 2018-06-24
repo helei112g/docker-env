@@ -8,6 +8,17 @@ if [ ! -d $logpath ]; then
   mkdir -p $logpath
 fi
 
+# 初始化应用对应的目录
+appLogDirs=('nginx' 'redis' 'phpfpm')
+for i in ${appLogDirs[@]}
+do
+  appLogPath="${logpath}/${i}"
+  if [ ! -d $appLogPath ]; then
+    echo 'make app log dir:' $appLogPath
+    mkdir -p $appLogPath
+  fi
+done
+
 # 生成项目文件
 wwwpath='./www/test'
 if [ ! -d $wwwpath ]; then
