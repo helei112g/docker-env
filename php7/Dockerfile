@@ -69,8 +69,6 @@ RUN groupadd -r work && useradd -r -g work work \
       " \
     && ./configure $BUILD_CONFIG \
     && make && make install \
-    #&& cp php.ini-development $APP_DIR/etc/php.ini \
-    #&& cp $APP_DIR/etc/php-fpm.conf.default $APP_DIR/etc/php-fpm.conf \
     && rm -rf $SRC_DIR \
     && chown -R work:work /home \
     #&& yum -y remove curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
@@ -81,6 +79,11 @@ RUN groupadd -r work && useradd -r -g work work \
 # 设置环境变量
 ENV PATH $APP_DIR/sbin:$APP_DIR/bin:$PATH
 
-EXPOSE 9000
+# 拷贝配置文件
+COPY etc/ /home/work/app/php/etc
 
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+EXPOSE 9000
 CMD ["php-fpm"]

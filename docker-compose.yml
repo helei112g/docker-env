@@ -34,26 +34,22 @@ services:
     volumes:
       - ./redis/conf:/home/work/app/redis/conf
       - ./redis/data:/home/work/app/redis/data
-      - ./redis/run.sh:/home/work/run.sh
     ports:
       - "6379:6379"
     restart: always
     networks:
       - default
-    command: ["/home/work/run.sh"]
   dev.php-fpm.srv:
     image: lei_php:7.2.6
     build: ./php7
     volumes:
       - ./php7/etc:/home/work/app/php/etc
-      - ./php7/run.sh:/home/work/run.sh
       - ./www:/home/work/www
     ports:
       - "9000:9000"
     restart: always
     networks:
       - default
-    command: ["/home/work/run.sh"]
 networks:
   default:
     external:

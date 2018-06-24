@@ -1,7 +1,7 @@
-#! bin/sh
-cd `dirname $0`
-
+#!/bin/sh
 set -e
+
+cd `dirname $0`
 
 if [ "${1:0:1}" = '-' ]; then
 	set -- nginx "$@"
@@ -13,5 +13,4 @@ if [ "$1" = 'nginx-server' -a "$(id -u)" = '0' ]; then
 	exec nginx
 fi
 
-# 启动 nginx
 exec "$@"

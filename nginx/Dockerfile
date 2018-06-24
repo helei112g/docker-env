@@ -60,8 +60,5 @@ COPY conf/ /home/work/app/nginx/conf
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-# 导出端口
 EXPOSE 8080 443
-
-# 启动nginx
 CMD ["nginx-server"]

@@ -19,13 +19,17 @@ RUN groupadd -r work && useradd -r -g work work \
     && make && make install \
     && mkdir -p $DATA_DIR \
     && mkdir -p $CONF_DIR \
-    && cp redis.conf $CONF_DIR \
     && chown -R work:work /home \
     && yum -y remove gcc gcc-c++ make perl \
     && rm -rf $SRC_DIR
 
+# 拷贝配置文件
+COPY conf/ /home/work/app/redis/conf
+
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
+
 # 导出端口
 EXPOSE 6379
-
-# 启动nginx
-CMD ["redis-server", "/home/work/app/redis/conf/redis.conf"]
+# 启动redis
+CMD ["redis-server"]
