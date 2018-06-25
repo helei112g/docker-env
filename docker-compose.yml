@@ -13,23 +13,8 @@ services:
       MYSQL_ROOT_PASSWORD: 123123
     networks:
       - default
-  dev.nginx.srv:
-    image: lei_nginx:1.14.0
-    build: ./nginx
-    volumes:
-      - ./nginx/conf:/home/work/app/nginx/conf
-      - ./logs/nginx:/home/work/logs/nginx
-      - ./www:/home/work/www
-    ports:
-      - "80:8080"
-      - "443:443"
-    restart: always
-    networks:
-      - default
-    depends_on:
-      - dev.php-fpm.srv
   dev.redis.srv:
-    image: lei_redis:3.2.11
+    image: redis:3.2.11
     build: ./redis
     volumes:
       - ./redis/conf:/home/work/app/redis/conf
@@ -39,12 +24,28 @@ services:
     restart: always
     networks:
       - default
+  dev.nginx.srv:
+    image: nginx:1.14.0
+    build: ./nginx
+    volumes:
+      - ./nginx/conf:/home/work/app/nginx/conf
+      - ./logs/nginx:/home/work/logs/nginx
+      - ../code/www:/home/work/www
+    ports:
+      - "80:8080"
+      - "443:443"
+    restart: always
+    networks:
+      - default
+    depends_on:
+      - dev.php-fpm.srv
   dev.php-fpm.srv:
-    image: lei_php:7.2.6
+    image: php:7.2.6
     build: ./php7
     volumes:
       - ./php7/etc:/home/work/app/php/etc
-      - ./www:/home/work/www
+      - ./php7/extensions:/home/work/app/php/lib/php/extensions/no-debug-non-zts-20170718
+      - ../code/www:/home/work/www
     ports:
       - "9000:9000"
     restart: always

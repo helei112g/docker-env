@@ -34,4 +34,16 @@ if [ ! -f $testphp ]; then
   echo '<?php\n phpinfo();' > $testphp
 fi
 
+# 生成redis与mysql的数据保存文件
+basePath='./'
+dataDirs=('mysql' 'redis')
+for i in ${dataDirs}
+do
+  dataPath="${basePath}/${i}/data"
+  if [ ! -d $dataPath ]; then
+    echo "make ${i} data dir"
+    mkdir -p $dataPath
+  fi
+done
+
 docker-compose up -d
