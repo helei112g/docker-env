@@ -2,5 +2,7 @@ www/
 mysql/data/
 redis/data/
 logs/
+nginx/conf/vhosts/*.conf
+!nginx/conf/vhosts/test.conf
 .DS_Store
 .idea
