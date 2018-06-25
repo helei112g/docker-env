@@ -11,6 +11,10 @@ ENV NGINX_VERSION=1.14.0 \
     WWW_DIR=/home/work/www \
     LOG_DIR=/home/work/logs/nginx
 
+# 设置系统时区
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
 # 拷贝文件
 COPY src/ $SRC_DIR
 

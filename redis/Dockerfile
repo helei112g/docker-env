@@ -8,6 +8,9 @@ ENV REDIS_VERSION=3.2.11 \
     DATA_DIR=/home/work/app/redis/data \
     CONF_DIR=/home/work/app/redis/conf
 
+# 设置系统时区
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 COPY src/ $SRC_DIR
 
 # 编译文件

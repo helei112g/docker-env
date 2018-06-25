@@ -75,10 +75,10 @@ RUN groupadd -r work && useradd -r -g work work \
     && cd phalcon-devtools \
     && ln -s $(pwd)/phalcon.php /usr/bin/phalcon \
     && chmod ugo+x /usr/bin/phalcon \
-    && yum -y remove wget gcc gcc++ gcc-c++ make git \
-      openssl openssl-devel curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
-      gmp-devel libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
-      libpng libpng-devel freetype freetype-devel libedit-devel autoconf \
+    #&& yum -y remove wget gcc gcc++ gcc-c++ make git \
+      #openssl openssl-devel curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
+      #gmp-devel libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
+      #libpng libpng-devel freetype freetype-devel libedit-devel autoconf \
     && yum clean all \
     && rm -rf $SRC_DIR \
     && mkdir -p $WWW_DIR \
