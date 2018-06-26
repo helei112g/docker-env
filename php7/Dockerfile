@@ -16,7 +16,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY src/ $SRC_DIR
 
 RUN groupadd -r work && useradd -r -g work work \
-    && yum -y install wget gcc gcc++ gcc-c++ make git \
+    && yum -y install wget gcc gcc++ gcc-c++ make git vim strace \
       openssl openssl-devel curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
       gmp-devel libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
       libpng libpng-devel freetype freetype-devel libedit-devel autoconf \

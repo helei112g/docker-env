@@ -35,6 +35,7 @@ services:
       - "80:8080"
       - "443:443"
     restart: always
+    privileged: true
     networks:
       - default
     depends_on:
@@ -49,6 +50,7 @@ services:
     ports:
       - "9000:9000"
     restart: always
+    privileged: true
     networks:
       - default
 networks:
