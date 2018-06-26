@@ -4,6 +4,7 @@ FROM alpine:3.7
 LABEL maintainer="HeLei <dayugog@gmail.com>"
 
 ENV NGINX_VERSION=1.14.0 \
+	TZ=Asia/Shanghai \
     ZLIB_VERSION=1.2.11 \
     PCRE_VERSION=8.42 \
     OPENSSL_VERSION=1.0.2o \

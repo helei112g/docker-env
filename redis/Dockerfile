@@ -4,6 +4,7 @@ FROM alpine:3.7
 LABEL maintainer="HeLei <dayugog@gmail.com>"
 
 ENV REDIS_VERSION=3.2.11 \
+    TZ=Asia/Shanghai \
     SRC_DIR=/home/work/src \
     DATA_DIR=/home/work/app/redis/data \
     CONF_DIR=/home/work/app/redis/conf
@@ -18,12 +19,12 @@ RUN set -ex; \
     \
     addgroup -S work && adduser -S -G work work; \
     apk add --no-cache --virtual .build-deps \
-            coreutils \
-            gcc \
-            jemalloc-dev \
-            linux-headers \
-            make \
-            musl-dev \
+        coreutils \
+        gcc \
+        jemalloc-dev \
+        linux-headers \
+        make \
+        musl-dev \
         ; \
     \
     cd $SRC_DIR; \
