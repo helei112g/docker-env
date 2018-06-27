@@ -19,7 +19,7 @@ RUN groupadd -r work && useradd -r -g work work \
     && yum -y install wget gcc gcc++ gcc-c++ make git vim strace \
       openssl openssl-devel curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
       gmp-devel libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
-      libpng libpng-devel freetype freetype-devel libedit-devel autoconf \
+      libpng libpng-devel freetype freetype-devel libedit-devel autoconf systemtap-sdt-devel \
     && cd $SRC_DIR \
     && tar zxvf php-$PHP_VERSION.tar.gz \
     && cd php-$PHP_VERSION \
@@ -28,6 +28,7 @@ RUN groupadd -r work && useradd -r -g work work \
       --prefix=$APP_DIR/php \
       --datadir=$APP_DIR/php/data \
       --disable-rpath \
+      --enable-dtrace \
       --enable-shared \
       --enable-xml \
       --enable-bcmath \
