@@ -8,7 +8,7 @@ services:
       - ./mysql/conf:/etc/mysql/conf.d
     ports:
       - "3307:3306"
-    restart: always
+    #restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123123
     networks:
@@ -21,7 +21,7 @@ services:
       - ./redis/data:/home/work/app/redis/data
     ports:
       - "6379:6379"
-    restart: always
+    #restart: always
     networks:
       - default
   dev.nginx.srv:
@@ -34,25 +34,12 @@ services:
     ports:
       - "80:8080"
       - "443:443"
-    restart: always
+    #restart: always
     privileged: true
     networks:
       - default
-    depends_on:
-      - dev.php-fpm.srv
-  dev.php-fpm.srv:
-    image: php:7.2.6
-    build: ./php7
-    volumes:
-      - ./php7/etc:/home/work/app/php/etc
-      - ./php7/extensions:/home/work/app/php/lib/php/extensions/no-debug-non-zts-20170718
-      - ../code/www:/home/work/www
-    ports:
-      - "9000:9000"
-    restart: always
-    privileged: true
-    networks:
-      - default
+    #depends_on:
+    #  - dev.php-fpm.srv
 networks:
   default:
     external:

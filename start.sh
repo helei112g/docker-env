@@ -46,4 +46,11 @@ do
   fi
 done
 
+# 首先启动 php7 ，再启动其它服务
+echo 'start php-fpm...'
+cd php7
+docker-compose up -d
+
+cd ..
+echo '\nstart mysql/redis/nginx ...'
 docker-compose up -d
