@@ -3,7 +3,7 @@ cd `dirname $0`
 
 if [ $1 ] && [ $1 = 'php' ]; then
     echo 'enter php fpm server.'
-    docker exec -it dockerenv_dev.php-fpm.srv_1 /bin/bash
+    docker exec -it php7_dev.php-fpm.srv_1 /bin/bash
 elif [ $1 ] && [ $1 = 'nginx' ]; then
     echo 'enter nginx server.'
     docker exec -it dockerenv_dev.nginx.srv_1 /bin/sh
