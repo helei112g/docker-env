@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  dev.golang.srv:
+    image: godev:1.10.3
+    build: ./
+    volumes:
+      - ../../code/gocode/docker:/go
+    ports:
+      - "12312:8080"
+    #restart: always
+    privileged: true
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: dockerenv_default
