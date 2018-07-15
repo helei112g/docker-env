@@ -7,6 +7,7 @@ services:
     volumes:
       - ./etc:/home/work/app/php/etc
       - ./extensions:/home/work/app/php/lib/php/extensions/no-debug-non-zts-20170718
+      - ./rpc:/home/work/lib/rpc_conf
       - ../logs/phpfpm:/home/work/logs
       - ../../code/www:/home/work/www
     ports:
