@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  dev.php53-fpm.srv:
+    image: php:5.3.29
+    build: ./
+    volumes:
+      - ./etc:/home/work/app/php/etc
+      - ./extensions:/home/work/app/php/lib/php/extensions/no-debug-non-zts-20090626
+      #- ./rpc:/home/work/lib/rpc_conf
+      - ../logs/phpfpm:/home/work/logs
+      - ../../code/www:/home/work/www
+    ports:
+      - "9001:9000"
+    #restart: always
+    privileged: true
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: dockerenv_default

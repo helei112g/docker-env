@@ -47,8 +47,13 @@ do
 done
 
 # 首先启动 php7 ，再启动其它服务
-echo 'start php-fpm...'
+echo 'start php7-fpm...'
 cd php7
+docker-compose up -d
+
+# 启动php5.3
+echo '\nstart php53-fpm...'
+cd ../php53
 docker-compose up -d
 
 cd ..
