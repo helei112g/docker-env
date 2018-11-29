@@ -7,3 +7,4 @@ nginx/conf/vhosts/*.conf
 .idea
 docker-compose.yml
 code.conf
+getcode.log
