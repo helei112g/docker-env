@@ -76,7 +76,7 @@ git@github.com:helei112g/payment.git   master  www/payment
 ```
 
 # Other
-为了让大家快速体验项目，项目中设置了 **payment** 项目的配置。启动容器后，你可以通过 `dayuenv getcode` 获取到最新的代码。然后绑定 `dev.payment.com` 域名到你的host。在浏览器中访问，就能运行payment这个项目了。
+为了让大家快速体验项目，项目中设置了 **[payment]**(https://github.com/helei112g/payment) 项目的配置。启动容器后，你可以通过 `dayuenv getcode` 获取到最新的代码。然后绑定 `dev.payment.com` 域名到你的host。在浏览器中访问，就能运行payment这个项目了。
 
 *PS: payment项目需要使用composer安装相关的依赖*
 
