@@ -1,25 +1,85 @@
-dockerfile + docker-compose搭建的私人开发环境
+Docker搭建的PHP7开发环境。
 
-# 使用方法
+# Env
+  - PHP 7.2.6
+  - Redis 3.2.11
+  - MySql 5.7.22
+  - Nginx 1.14.0
 
-获取项目：
+# PHP Extensions
+  - Phalcon 直接可使用该镜像用于该框架的开发工作
+  - Yaf 直接可用于开发Yaf框架项目
+  - Redis 扩展
+  - igbinary 扩展，更高效的序列化函数
+  - xdebug 扩展，方便调试
 
-```shell
-git pull git@github.com:helei112g/docker-env.git
+# Install
 
-chmod +x start.sh
-
-chmod +x stop.sh
+获取项目
+```
+git clone git@github.com:helei112g/docker-env.git
 ```
 
-构建：
+设置系统别名
+```
+alias dayuenv=/dayu/DockerEnv/dayuenv.sh
+```
+设置别名的目的是为了能够像系统命令一样的方便使用，效果:
+<p align="center">
+  <img src="./demo1.png">
+</p>
 
-```shell
-./start.sh
+# Usage
+
+上面的截图已经非常明确说明了如果使用，对个别命令进行下详细解释
+
+1. `dayuenv build` 首次安装该项目后，需要通过该命令来创建docker镜像，创建完成后会自动启动所有容器
+2. `dayuenv start` 镜像创建后，每次运行该命令启动容器即可
+3. `dayuenv login` 提供的登录容器内部的命令
+4. `dayuenv destroy` 用于删除容器，删除后使用 `dayuenv start` 会再次自动创建容器。注意：该命令不会删除镜像
+
+**dayuenv getcode** 需要重点说下，大家注意在目录下有一个文件：`code.conf` 这是用于配置自己的代码仓库路径，便于更新。
+```
+git@github.com:helei112g/payment.git   master  www/payment
+
+```
+以这个配置为例，当运行 `dayuenv getcode` 命令时，如果这个项目存在，会自动进行更新。如果不存在则会自动 clone 下来。
+
+# Dirs
+以我自己电脑的开发目录给大家做个展示，我将 **docker** 环境的配置信息与代码 **code** 目录放在同一级别，方便我们开发。
+
+当然你完全可以按照自己的爱好进行设置
+
+```
+├── code
+│   ├── gocode
+│   ├── python
+│   └── www
+│       ├── payment
+│       └── x-api
+└── docker-env
+    ├── README.md
+    ├── code.conf
+    ├── code.conf.bak
+    ├── command
+    ├── dayuenv.sh
+    ├── demo1.png
+    ├── docker-compose.yml
+    ├── docker-compose.yml.bak
+    ├── getcode.log
+    ├── golang
+    ├── logs
+    ├── mysql
+    ├── nginx
+    ├── php7
+    └── redis
 ```
 
-关闭：
+# Other
+为了让大家快速体验项目，项目中设置了 **payment** 项目的配置。启动容器后，你可以通过 `dayuenv getcode` 获取到最新的代码。然后绑定 `dev.payment.com` 域名到你的host。在浏览器中访问，就能运行payment这个项目了。
 
-```shell
-./stop.sh
-```
+*PS: payment项目需要使用composer安装相关的依赖*
+
+<p align="center">
+  <img src="./demo2.png">
+</p>
