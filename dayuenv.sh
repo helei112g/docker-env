@@ -32,9 +32,9 @@ case $cmd in
     ./command/stop.sh
     exit
   ;;
-  "list" )
+  "ls" )
     $OUTPUT "$RED  Show all the container $TAILS\n"
-    docker ps -a | grep mi-php
+    docker ps -a | grep dev-*
     exit
   ;;
   "getcode" )
@@ -53,12 +53,12 @@ $OUTPUT "
   $BLUE$FLICKER Building a development environment for yourself by docker $TAILS
 
   $YELLOW Usage: $TAILS
-    $WHITE dayuenv $TAILS build/start/list/restart/stop/getcode/login/destroy
+    $WHITE dayuenv $TAILS build/start/ls/restart/stop/getcode/login/destroy
 
   $YELLOW Command: $TAILS
     $WHITE dayuenv build $TAILS      build image and init docker container
     $WHITE dayuenv start $TAILS      build or start container
-    $WHITE dayuenv list $TAILS       show container list
+    $WHITE dayuenv ls $TAILS         show container list
     $WHITE dayuenv restart $TAILS    restart container
     $WHITE dayuenv stop $TAILS       stop container
     $WHITE dayuenv getcode $TAILS    clone or pull project code from github, default code path: ../code

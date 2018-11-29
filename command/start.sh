@@ -15,7 +15,7 @@ if [ $? = 1 ]; then
   $OUTPUT "
   $WHITE Dayu docker environment is running $TAILS
   "
-  docker ps | grep dayu-php
+  docker ps | grep dev-*
 else
   docker-compose up -d
   $OUTPUT "
