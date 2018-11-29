@@ -22,7 +22,7 @@ git clone git@github.com:helei112g/docker-env.git
 
 设置系统别名
 ```
-alias dayuenv=/dayu/DockerEnv/dayuenv.sh
+alias dayuenv=/yourpath/docker-env/dayuenv.sh
 ```
 设置别名的目的是为了能够像系统命令一样的方便使用，效果:
 <p align="center">
