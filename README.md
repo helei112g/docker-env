@@ -31,30 +31,28 @@ alias dayuenv=/yourpath/docker-env/dayuenv.sh
 
 # Usage
 
-上面的截图已经非常明确说明了如果使用，对个别命令进行下详细解释
+上面的截图的命令已经很清晰展示了各个命令，对部分命令重点说下
 
 1. `dayuenv build` 首次安装该项目后，需要通过该命令来创建docker镜像，创建完成后会自动启动所有容器
 2. `dayuenv start` 镜像创建后，每次运行该命令启动容器即可
 3. `dayuenv login` 提供的登录容器内部的命令
-4. `dayuenv destroy` 用于删除容器，删除后使用 `dayuenv start` 会再次自动创建容器。注意：该命令不会删除镜像
+4. `dayuenv destroy` 用于删除容器，删除后使用 `dayuenv start` 会再次自动创建容器。*注意：该命令不会删除镜像*
 
 **dayuenv getcode** 需要重点说下，大家注意在目录下有一个文件：`code.conf` 这是用于配置自己的代码仓库路径，便于更新。
 ```
 git@github.com:helei112g/payment.git   master  www/payment
 
 ```
-以这个配置为例，当运行 `dayuenv getcode` 命令时，如果这个项目存在，会自动进行更新。如果不存在则会自动 clone 下来。
+以这个配置为例，当运行 `dayuenv getcode` 命令时，如果这个项目存在，会自动进行更新。如果不存在则会自动 clone 下来。你可以把自己的代码仓库放在这里，方便统一管理
 
 # Dirs
-以我自己电脑的开发目录给大家做个展示，我将 **docker** 环境的配置信息与代码 **code** 目录放在同一级别，方便我们开发。
-
-当然你完全可以按照自己的爱好进行设置
+以我自己电脑的开发目录结构给大家做个展示，我将 **docker** 环境的配置信息与代码 **code** 目录放在同一级别。
 
 ```
 ├── code
-│   ├── gocode
-│   ├── python
-│   └── www
+│   ├── gocode // 存放go相关代码
+│   ├── python // 存放python相关代码
+│   └── www // php代码
 │       ├── payment
 │       └── x-api
 └── docker-env
