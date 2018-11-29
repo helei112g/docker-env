@@ -57,9 +57,11 @@ fi
 
 # 创建默认网络
 createNetwork
-docker-compose up -d
-
+# 创建保存数据的目录
+createDataDirs
 # 创建日志目录
 createLogDirs
+# 启动
+docker-compose up -d
 
 $OUTPUT "$GREEN Congratulations! you can use the container! $TAILS"

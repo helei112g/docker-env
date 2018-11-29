@@ -13,6 +13,6 @@ if [ $? = 1 ]; then
   docker-compose stop
 else
   $OUTPUT "
-  $WHITE docker container was stop $TAILS
+  $WHITE docker container has stopped runing $TAILS
   "
 fi

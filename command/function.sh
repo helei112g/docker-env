@@ -53,6 +53,21 @@ function createLogDirs()
   done
 }
 
+# 创建保存数据的目录
+function createDataDirs()
+{
+  basePath='../'
+  dataDirs=('mysql' 'redis')
+  for i in ${dataDirs}
+  do
+    dataPath="${basePath}/${i}/data"
+    if [ ! -d $dataPath ]; then
+      $OUTPUT "$WHITE make ${i} data dir $TAILS"
+      mkdir -p $dataPath
+    fi
+  done
+}
+
 # 检查容器是否已经开始工作
 function isWorkForContainer()
 {

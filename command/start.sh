@@ -4,6 +4,8 @@ cd `dirname $0`
 . ./function.sh
 . ./color.sh
 
+# 创建保存数据的目录
+createDataDirs
 # 创建日志目录
 createLogDirs
 
@@ -11,12 +13,12 @@ createLogDirs
 isWorkForContainer
 if [ $? = 1 ]; then
   $OUTPUT "
-  $WHITE php5.3 and php 7.1 container is running $TAILS
+  $WHITE Dayu docker environment is running $TAILS
   "
-  docker ps | grep mi-php
+  docker ps | grep dayu-php
 else
   docker-compose up -d
   $OUTPUT "
-  php5.3 and php 7.1 environment start work, enjoy coding...
+  $WHITE Dayu docker environment start work, enjoy coding... $TAILS
   "
 fi
