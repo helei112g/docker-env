@@ -1,11 +1,8 @@
-www/
 mysql/data/
 redis/data/
-logs/
-php7/rpc
-php7/etc/.service_mgr.cachephp
+logs/*
 nginx/conf/vhosts/*.conf
-!nginx/conf/vhosts/test.conf
+!nginx/conf/vhosts/dev.payment.com.conf
 .DS_Store
 .idea
 docker-compose.yml

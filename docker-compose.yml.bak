@@ -65,21 +65,6 @@ services:
       - ../code/www:/home/work/www
     networks:
       - default
-  dev.php53-fpm.srv:
-    image: dayu-php:5.3.29
-    container_name: dev-php53
-    privileged: true
-    build: ./php53
-    environment:
-      - uid=UID
-      - gid=GID
-    volumes:
-      - ./php53/etc:/home/work/app/php/etc
-      - ./php53/extensions:/home/work/app/php/lib/php/extensions/no-debug-non-zts-20090626
-      - ./logs/phpfpm:/home/work/logs
-      - ../code/www:/home/work/www
-    networks:
-      - default
 networks:
   default:
     external:

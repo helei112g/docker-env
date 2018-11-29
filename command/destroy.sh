@@ -12,7 +12,7 @@ fi
 
 # 删除
 $OUTPUT "
-$RED delete the i18n container and logs dir $TAILS
+$RED delete the dayu's docker container and logs dir $TAILS
 "
 
 logDir=../logs
