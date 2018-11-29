@@ -2,7 +2,7 @@ version: "3"
 
 services:
   dev.golang.srv:
-    image: godev:1.10.3
+    image: dayu-golang:1.10.3
     build: ./
     volumes:
       - ../../code/gocode/docker:/go

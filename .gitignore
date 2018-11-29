@@ -8,3 +8,5 @@ nginx/conf/vhosts/*.conf
 !nginx/conf/vhosts/test.conf
 .DS_Store
 .idea
+docker-compose.yml
+code.conf

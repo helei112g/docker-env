@@ -1,0 +1,86 @@
+version: "3"
+
+services:
+  dev.mysql.srv:
+    image: mysql:5.7.22
+    container_name: dev-mysql
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: 123123
+      - uid=UID
+      - gid=GID
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
+    ports:
+      - "3307:3306"
+    networks:
+      - default
+  dev.redis.srv:
+    image: dayu-redis:3.2.11
+    container_name: dev-redis
+    privileged: true
+    build: ./redis
+    environment:
+      - uid=UID
+      - gid=GID
+    volumes:
+      - ./redis/conf:/home/work/app/redis/conf
+      - ./redis/data:/home/work/app/redis/data
+    ports:
+      - "6379:6379"
+    networks:
+      - default
+  dev.nginx.srv:
+    image: dayu-nginx:1.14.0
+    container_name: dev-nginx
+    privileged: true
+    build: ./nginx
+    environment:
+      - uid=UID
+      - gid=GID
+    volumes:
+      - ./nginx/conf:/home/work/app/nginx/conf
+      - ./logs/nginx:/home/work/logs/nginx
+      - ../code/www:/home/work/www
+    ports:
+      - "80:8080"
+      - "443:443"
+    networks:
+      - default
+    depends_on:
+      - dev.php-fpm.srv
+  dev.php-fpm.srv:
+    image: dayu-php:7.2.6
+    container_name: dev-php7
+    privileged: true
+    build: ./php7
+    environment:
+      - uid=UID
+      - gid=GID
+    volumes:
+      - ./php7/etc:/home/work/app/php/etc
+      - ./php7/extensions:/home/work/app/php/lib/php/extensions/no-debug-non-zts-20170718
+      - ./logs/phpfpm:/home/work/logs
+      - ../code/www:/home/work/www
+    networks:
+      - default
+  dev.php53-fpm.srv:
+    image: dayu-php:5.3.29
+    container_name: dev-php53
+    privileged: true
+    build: ./php53
+    environment:
+      - uid=UID
+      - gid=GID
+    volumes:
+      - ./php53/etc:/home/work/app/php/etc
+      - ./php53/extensions:/home/work/app/php/lib/php/extensions/no-debug-non-zts-20090626
+      - ./logs/phpfpm:/home/work/logs
+      - ../code/www:/home/work/www
+    networks:
+      - default
+networks:
+  default:
+    external:
+      name: dockerenv_default
