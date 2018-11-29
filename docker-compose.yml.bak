@@ -7,8 +7,6 @@ services:
     privileged: true
     environment:
       MYSQL_ROOT_PASSWORD: 123123
-      - uid=UID
-      - gid=GID
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/conf:/etc/mysql/conf.d
@@ -68,4 +66,4 @@ services:
 networks:
   default:
     external:
-      name: dockerenv_default
+      name: dayuenv_default

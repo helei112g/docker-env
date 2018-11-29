@@ -9,7 +9,7 @@ cmd=$1
 case $cmd in
   "build" )
     $OUTPUT "$RED  Build the docker image and init container $TAILS\n"
-    ./command/start.sh
+    ./command/build.sh
     exit
   ;;
   "start" )
@@ -39,10 +39,7 @@ case $cmd in
   ;;
   "getcode" )
     $OUTPUT "$RED  Update project code $TAILS\n"
-    codepath=$2
-    if [ -z "$2" ];then
-      codepath='../code'
-    fi
+    codepath='../code'
     ./command/code.sh $codepath
     exit
   ;;
@@ -56,7 +53,7 @@ $OUTPUT "
   $BLUE$FLICKER Building a development environment for yourself by docker $TAILS
 
   $YELLOW Usage: $TAILS
-    $WHITE dayuenv $TAILS start/list/restart/stop/getcode/login/destroy
+    $WHITE dayuenv $TAILS build/start/list/restart/stop/getcode/login/destroy
 
   $YELLOW Command: $TAILS
     $WHITE dayuenv build $TAILS      build image and init docker container
@@ -64,12 +61,11 @@ $OUTPUT "
     $WHITE dayuenv list $TAILS       show container list
     $WHITE dayuenv restart $TAILS    restart container
     $WHITE dayuenv stop $TAILS       stop container
-    $WHITE dayuenv getcode $TAILS    clone or pull project code from micode, option: [code path], default: ../code
+    $WHITE dayuenv getcode $TAILS    clone or pull project code from github, default code path: ../code
     $WHITE dayuenv login $TAILS      into the container, option: [php] [nginx] [redis] [mysql]
     $WHITE dayuenv destroy $TAILS    destroy container and delete the logs dir
     $WHITE dayuenv help $TAILS       commands list
 
-  $GREEN Blog: $BTLINE https://dayutalk.cn$TAILS
   $GREEN GitHub: $BTLINE https://github.com/helei112g$TAILS
   "
     exit
