@@ -13,7 +13,11 @@ RUN set -eux; \
 		git \
         vim \
         strace \
+        sysstat \
+        curl \
 	; \
+    echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
+    apk --update add --no-cache perf; \
     go get github.com/astaxie/beego && go get github.com/beego/bee; \
     bee version
 

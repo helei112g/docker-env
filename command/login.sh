@@ -23,6 +23,11 @@ elif [ $1 ] && [ $1 = 'mysql' ]; then
   $WHITE into the dayu-mysql container $TAILS
   "
   docker exec -it dev-mysql /bin/bash
+elif [ $1 ] && [ $1 = 'golang' ]; then
+  $OUTPUT "
+  $WHITE into the dayu-golang container $TAILS
+  "
+  docker exec -it dev-golang /bin/sh
 else
   $OUTPUT "
   $WHITE example: ./dayuenv.sh login php $TAILS
