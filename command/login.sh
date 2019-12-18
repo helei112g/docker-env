@@ -18,11 +18,11 @@ elif [ $1 ] && [ $1 = 'redis' ]; then
   $WHITE into the dayu-redis container $TAILS
   "
   docker exec -it dev-redis /bin/sh
-elif [ $1 ] && [ $1 = 'redis-slave' ]; then
+elif [ $1 ] && [ $1 = 'redis-slave01' ]; then
   $OUTPUT "
-  $WHITE into the dayu-redis-slave container $TAILS
+  $WHITE into the dev-redis-slave01 container $TAILS
   "
-  docker exec -it dev-redis-slave /bin/sh
+  docker exec -it dev-redis-slave01 /bin/sh
 elif [ $1 ] && [ $1 = 'mysql' ]; then
   $OUTPUT "
   $WHITE into the dayu-mysql container $TAILS

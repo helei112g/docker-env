@@ -62,7 +62,7 @@ $OUTPUT "
     $WHITE dayuenv restart $TAILS    restart container
     $WHITE dayuenv stop $TAILS       stop container
     $WHITE dayuenv getcode $TAILS    clone or pull project code from github, default code path: ../code
-    $WHITE dayuenv login $TAILS      into the container, option: [php] [nginx] [redis] [redis-slave] [mysql] [golang]
+    $WHITE dayuenv login $TAILS      into the container, option: [php] [nginx] [redis] [redis-slave01] [mysql] [golang]
     $WHITE dayuenv destroy $TAILS    destroy container and delete the logs dir
     $WHITE dayuenv help $TAILS       commands list
 

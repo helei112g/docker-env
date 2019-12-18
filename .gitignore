@@ -1,6 +1,6 @@
 mysql/data/
 redis/data/
-redis-slave/data/
+redis-slave01/data/
 logs/*
 nginx/conf/vhosts/*.conf
 !nginx/conf/vhosts/dev.payment.com.conf
