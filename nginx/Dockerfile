@@ -98,14 +98,8 @@ RUN set -ex; \
     && mkdir -p $LOG_DIR \
     && chown -R work:work /home
 
-# 设置环境变量
-ENV PATH /home/work/app/nginx/sbin:$PATH
-
 # 拷贝配置文件
 COPY conf/ /home/work/app/nginx/conf
 
-COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
-
 EXPOSE 8080 443
-CMD ["nginx-server"]
+CMD ["/home/work/app/nginx/sbin/nginx"]

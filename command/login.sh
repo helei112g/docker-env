@@ -18,6 +18,11 @@ elif [ $1 ] && [ $1 = 'redis' ]; then
   $WHITE into the dayu-redis container $TAILS
   "
   docker exec -it dev-redis /bin/sh
+elif [ $1 ] && [ $1 = 'redis-slave' ]; then
+  $OUTPUT "
+  $WHITE into the dayu-redis-slave container $TAILS
+  "
+  docker exec -it dev-redis-slave /bin/sh
 elif [ $1 ] && [ $1 = 'mysql' ]; then
   $OUTPUT "
   $WHITE into the dayu-mysql container $TAILS
@@ -31,6 +36,6 @@ elif [ $1 ] && [ $1 = 'golang' ]; then
 else
   $OUTPUT "
   $WHITE example: ./dayuenv.sh login php $TAILS
-   option: [php] [nginx] [redis] [mysql]
+   option: [php] [nginx] [redis] [redis-slave] [mysql]
   "
 fi

@@ -15,7 +15,7 @@ services:
     networks:
       - default
   dev.redis.srv:
-    image: dayu-redis:3.2.11
+    image: dayu-redis:4.0.14
     container_name: dev-redis
     privileged: true
     build: ./redis
@@ -29,6 +29,22 @@ services:
       - "6379:6379"
     networks:
       - default
+  dev.redis-slave01.srv:
+    image: dayu-redis:4.0.14
+    container_name: dev-redis-slave01
+    privileged: true
+    environment:
+      - uid=UID
+      - gid=GID
+    volumes:
+      - ./redis-slave01/conf:/home/work/app/redis/conf
+      - ./redis-slave01/data:/home/work/app/redis/data
+    ports:
+      - "6380:6379"
+    networks:
+      - default
+    depends_on:
+      - dev.redis.srv
   dev.nginx.srv:
     image: dayu-nginx:1.14.0
     container_name: dev-nginx
@@ -38,7 +54,6 @@ services:
       - uid=UID
       - gid=GID
     volumes:
-      - ./nginx/conf:/home/work/app/nginx/conf
       - ./logs/nginx:/home/work/logs/nginx
       - ../code/www:/home/work/www
     ports:

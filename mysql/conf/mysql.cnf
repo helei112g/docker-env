@@ -3,8 +3,18 @@ default-character-set=utf8
 
 [mysqld]
 character-set-server=utf8
-interactive_timeout=30
-wait_timeout=30
+interactive_timeout=28800
+wait_timeout=28800
+log_error=/var/lib/mysql/log_error.log
+log_error_verbosity=2
+
+slow_query_log=ON
+long_query_time=10
+
+log-bin=/var/lib/mysql/mysql-binlog
+sync_binlog=1
+innodb_support_xa=1
+server-id=1
 
 [client]
 default-character-set=utf8

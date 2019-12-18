@@ -1,4 +1,4 @@
-FROM golang:1.10.3-alpine
+FROM golang:1.13.4
 
 # 解释信息
 LABEL maintainer="HeLei <dayugog@gmail.com>"

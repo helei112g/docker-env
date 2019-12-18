@@ -72,10 +72,6 @@ RUN groupadd -r work && useradd -r -g work work \
     && ./configure $BUILD_CONFIG \
     && make && make install \
     && cd $APP_DIR \
-    && git clone https://github.com/phalcon/phalcon-devtools.git \
-    && cd phalcon-devtools \
-    && ln -s $(pwd)/phalcon.php /usr/bin/phalcon \
-    && chmod ugo+x /usr/bin/phalcon \
     #&& yum -y remove wget gcc gcc++ gcc-c++ make git \
       #openssl openssl-devel curl-devel libjpeg libjpeg-devel bzip2-devel.x86_64 \
       #gmp-devel libxml2 libxml2-devel libxslt-devel libcurl libcurl-devel \
